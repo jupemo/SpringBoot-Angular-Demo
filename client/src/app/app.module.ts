@@ -14,12 +14,14 @@ import { CarListComponent } from './car-list/car-list.component'
 import { from } from 'rxjs';
 import { CarEditComponent } from './car-edit/car-edit.component';
 import { FormsModule } from '@angular/forms';
+import { CoolListComponent } from './cool-list/cool-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarListComponent,
-    CarEditComponent
+    CarEditComponent,
+    CoolListComponent
   ],
   imports: [
     BrowserModule,

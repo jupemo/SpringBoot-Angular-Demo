@@ -2,6 +2,9 @@ package com.example.demo;
 
 import java.util.stream.Stream;
 
+import com.example.demo.model.Car;
+import com.example.demo.repository.CarRepository;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,30 +12,32 @@ import org.springframework.context.annotation.Bean;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.core.Ordered;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Collections;
 
 @SpringBootApplication
+@EnableTransactionManagement
 public class DemoAngularApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoAngularApplication.class, args);
 	}
 
-	@Bean
-	ApplicationRunner init(CarRepository repository){
-		return args -> {  
-			Stream.of("Ferrari", "Jaguar", "Porsche", "Lamborghini", "Bugatti", "AMC Gremlim", "Triumph Stag", "Ford Pinto", "Yugo GV")
-					.forEach(name -> {
-						Car car = new Car();
-						car.setName(name);
-						repository.save(car);
-					});
-					repository.findAll().forEach(System.out::println);
-		};
-	}
+	// @Bean
+	// ApplicationRunner init(CarRepository repository){
+	// 	return args -> {  
+	// 		Stream.of("Ferrari", "Jaguar", "Porsche", "Lamborghini", "Bugatti", "AMC Gremlim", "Triumph Stag", "Ford Pinto", "Yugo GV")
+	// 				.forEach(name -> {
+	// 					Car car = new Car();
+	// 					car.setName(name);
+	// 					repository.save(car);
+	// 				});
+	// 				repository.findAll().forEach(System.out::println);
+	// 	};
+	// }
 
 	@Bean
 	public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {

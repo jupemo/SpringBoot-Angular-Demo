@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CarListComponent } from './car-list/car-list.component';
 import { CarEditComponent } from './car-edit/car-edit.component';
+import { CoolListComponent } from './cool-list/cool-list.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'car-edit/:id',
     component : CarEditComponent
+  },
+  {
+    path: 'cool-cars',
+    component : CoolListComponent
   }
 ];
 

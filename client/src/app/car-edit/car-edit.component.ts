@@ -25,7 +25,7 @@ export class CarEditComponent implements OnInit, OnDestroy {
       if (id) {
         this.carService.get(id).subscribe((car:any) => {
           if (car) {
-            this.car =car;
+            this.car = car;
             this.car.href = car._links.self.href;
             this.giphyService.get(car.name).subscribe(url => car.giphyService = url);
           } else {
@@ -46,6 +46,7 @@ export class CarEditComponent implements OnInit, OnDestroy {
   }
 
   save(form :NgForm){
+    console.log(form);
     this.carService.save(form).subscribe(result => {
       this.gotoList();
     },error => console.error(error));

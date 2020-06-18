@@ -1,16 +1,24 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.example.demo.model.Car;
+import com.example.demo.repository.CarRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class CoolCarController {
     private CarRepository repository;
 
+    @Autowired
     public CoolCarController(CarRepository repository) {
         this.repository = repository;
     }
@@ -21,6 +29,18 @@ public class CoolCarController {
         return repository.findAll().stream()
                 .filter(this::isCool)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/cars")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Collection<Car> allCars() {
+        return repository.findAll();
+    }
+
+    @PostMapping("/add-car")
+    @CrossOrigin(origins = "hhtp://localhost:4200")
+    public Car newCar(@RequestBody Car car){
+        return repository.save(car);
     }
 
     private boolean isCool(Car car){

@@ -1,8 +1,10 @@
-package com.example.demo;
+package com.example.demo.repository;
+
+import com.example.demo.model.Car;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-interface CarRepository extends JpaRepository<Car, Long>{
+public interface CarRepository extends JpaRepository<Car, Long>{
 }
