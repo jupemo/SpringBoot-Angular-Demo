@@ -29,8 +29,14 @@ export class CarService {
     return result;
   }
 
-  remove(href: string){
-    return this.http.delete(href);
+  uptdate(car:any, id:string): Observable<any>{
+    let result : Observable<any>
+    result = this.http.put(this.API + "/edit-car/" + id, car);
+    return result;
+  } 
+
+  remove(id: string){
+    return this.http.delete(this.API + "/delete-car/" + id);
   }
 
 }

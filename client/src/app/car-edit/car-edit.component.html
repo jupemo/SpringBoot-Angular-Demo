@@ -1,5 +1,5 @@
 <mat-card>
-    <form #carForm="ngForm" (ngSubmit)="save(carForm.value)" >
+    <form #carForm="ngForm" (ngSubmit)="saveOrUpdate(carForm.value)" >
         <mat-card-header>
             <mat-card-title><h2> {{car.name? 'Edit' : 'Add'}} Car </h2></mat-card-title>
         </mat-card-header>
@@ -11,7 +11,7 @@
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button color="primary" type="submit" [disabled] = "!carForm.valid" > Save</button>
-            <button mat-raised-button color="secundary" (click)="remove(car.href)" *ngIf="car.href" type="button">Delete</button>
+            <button mat-raised-button color="secundary" (click)="remove()" *ngIf="car.href" type="button">Delete</button>
             <a mat-button routerLink="/car-list">Cancel</a>
         </mat-card-actions>
         <mat-card-footer>

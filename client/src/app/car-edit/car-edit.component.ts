@@ -45,17 +45,28 @@ export class CarEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/car-list']);
   }
 
-  save(form :NgForm){
-    console.log(form);
-    this.carService.save(form).subscribe(result => {
-      this.gotoList();
-    },error => console.error(error));
+  saveOrUpdate(form :NgForm){
+    this.sub = this.route.params.subscribe( params => {
+      const id = params.id;
+      if(id){
+        this.carService.uptdate(form, id).subscribe(result => {
+          this.gotoList();
+        });
+      }else{
+        this.carService.save(form).subscribe(result => {
+          this.gotoList();
+        }, error => console.error(error));
+      }
+    })
   }
-  
-  remove(href){
-    this.carService.remove(href).subscribe(result => {
-      this.gotoList();
-    }, error => console.log(error));
+
+  remove(){
+    this.sub = this.route.params.subscribe(params => {
+      const id = params.id;
+      this.carService.remove(id).subscribe(result => {
+        this.gotoList();
+      }, error => console.log(error));
+    })
   }
 
 }
